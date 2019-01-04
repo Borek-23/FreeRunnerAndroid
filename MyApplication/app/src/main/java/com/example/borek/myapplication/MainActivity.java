@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Locating buttons on the layout
-        navButtonMain = (Button) findViewById(R.id.navButton);
+        navButtonMain = (Button) findViewById(R.id.navButtonMain);
         weatherButton = (Button) findViewById(R.id.weatherButton);
         mapButton = (Button) findViewById(R.id.mapButton);
         tipsButton = (Button) findViewById(R.id.tipsButton);

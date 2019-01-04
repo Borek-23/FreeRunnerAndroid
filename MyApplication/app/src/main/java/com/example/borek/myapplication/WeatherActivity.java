@@ -2,6 +2,7 @@ package com.example.borek.myapplication;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,6 +33,4 @@ public class WeatherActivity extends AppCompatActivity {
         temperature = (TextView) findViewById(R.id.temperature);
         weatherIcon = (ImageView) findViewById(R.id.weatherIcon);
     }
-
-    
 }
