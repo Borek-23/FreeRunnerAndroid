@@ -7,7 +7,7 @@ import android.widget.Button;
 public class HistoryActivity extends AppCompatActivity {
 
     // Button objects
-    Button navButton;
+    Button navButtonHistory;
     Button shareButton;
 
     @Override
@@ -15,7 +15,7 @@ public class HistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
-        navButton = (Button) findViewById(R.id.navButton);
+        navButtonHistory = (Button) findViewById(R.id.navButtonHistory);
         shareButton = (Button) findViewById(R.id.shareButton);
     }
 }

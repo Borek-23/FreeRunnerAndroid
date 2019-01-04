@@ -9,7 +9,7 @@ import android.widget.Button;
 public class RunningActivity extends AppCompatActivity {
 
     // Button object
-    Button navButton;
+    Button navButtonRunning;
     Button completeRunButton;
 
     @Override
@@ -17,7 +17,7 @@ public class RunningActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_running);
 
-        navButton = (Button) findViewById(R.id.navButton);
+        navButtonRunning = (Button) findViewById(R.id.navButtonRunning);
         completeRunButton = (Button) findViewById(R.id.completeRunButton);
     }
 

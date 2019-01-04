@@ -20,7 +20,7 @@ import java.util.Date;
 public class ResultsActivity extends AppCompatActivity {
 
     // Button object
-    Button navButton;
+    Button navButtonResult;
     Button shareButton;
 
     // TextView object
@@ -31,7 +31,7 @@ public class ResultsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
 
-        navButton = (Button) findViewById(R.id.navButton);
+        navButtonResult = (Button) findViewById(R.id.navButtonResult);
         shareButton = (Button) findViewById(R.id.shareButton);
 
         // Locating TextViews on the layout
