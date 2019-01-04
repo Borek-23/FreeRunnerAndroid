@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">FreeRunner</string>
     <string name="title_activity_running_map">Map</string>
+    <string name="google_map_api_key">AIzaSyAp4L98lLX_OWgIhLHz7Y3zxxVixJqQ43U</string>
 
     <!-- ListView for Results in result Intent-->
 

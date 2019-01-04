@@ -26,6 +26,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     Button goTrackedButton;
     MapView runningMapView;
 
+    Boolean locationPermission = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +37,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         goTrackedButton = (Button) findViewById(R.id.goTrackedButton);
         runningMapView = (MapView) findViewById(R.id.runningMapView);
 
+
         initGoogleMap(savedInstanceState);
     }
 
@@ -42,7 +45,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         // MapView MUST be passed Bundle that contain ONLY MapView SDK
         Bundle mapViewBundle = null;
         if (savedInstanceState != null) {
-            mapViewBundle = savedInstanceState.getBundle(MAPVIEW_BUNDLE_KEY);
+            mapViewBundle = savedInstanceState.getBundle(MAPVIEW_BllUNDLE_KEY);
         }
         runningMapView.onCreate(mapViewBundle);
 
