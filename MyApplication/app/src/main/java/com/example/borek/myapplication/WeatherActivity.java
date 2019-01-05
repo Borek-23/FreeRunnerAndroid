@@ -1,5 +1,12 @@
 package com.example.borek.myapplication;
 
+import android.*;
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Looper;
+import android.support.constraint.ConstraintLayout;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -7,15 +14,19 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.common.internal.service.Common;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+
+import java.util.List;
+
 public class WeatherActivity extends AppCompatActivity {
 
     Button navButtonWeather;
     TextView runCondition;
     TextView runningConditionChangeable;
-    TextView weatherCondition;
-    TextView humidity;
-    TextView visibility;
-    TextView temperature;
     ImageView weatherIcon;
 
     @Override
@@ -27,10 +38,7 @@ public class WeatherActivity extends AppCompatActivity {
         navButtonWeather = (Button) findViewById(R.id.navButtonWeather);
         runCondition = (TextView) findViewById(R.id.runCondition);
         runningConditionChangeable = (TextView) findViewById(R.id.runningConditionChangeable);
-        weatherCondition = (TextView) findViewById(R.id.weatherCondition);
-        humidity = (TextView) findViewById(R.id.humidity);
-        visibility = (TextView) findViewById(R.id.visibility);
-        temperature = (TextView) findViewById(R.id.temperature);
+        weatherIcon = (ImageView) findViewById(R.id.weatherIcon);
         weatherIcon = (ImageView) findViewById(R.id.weatherIcon);
     }
 }

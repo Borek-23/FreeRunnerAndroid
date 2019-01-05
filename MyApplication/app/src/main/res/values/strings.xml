@@ -4,4 +4,8 @@
     <string name="google_map_api_key">AIzaSyAjGmFC1CePcmOBlnc5ui1C5Leu4QaTIRI</string>
     <string name="title_activity_maps_for_fragment">Map</string>
     <string name="title_activity_running_maps">Map</string>
+    <string name="open_weathermap_api_key">4cf171611b393ec1f32e753bb67b2a87</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
