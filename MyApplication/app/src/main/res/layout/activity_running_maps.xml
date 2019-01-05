@@ -53,8 +53,8 @@
         android:layout_width="match_parent"
         android:layout_height="5dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +62,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.673"
-        app:srcCompat="@drawable/line1" />
+        android:src="@drawable/line1" />
 
     <TextView
         android:id="@+id/readyToRunSing"
@@ -94,7 +94,7 @@
 
     <fragment
         android:id="@+id/mapFragment"
-        android:name="com.google.android.gms.maps.MapFragment"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="369dp"
         android:layout_marginBottom="8dp"
@@ -107,23 +107,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mapToolbar"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.183" />
-
-        <!--<com.google.android.gms.maps.MapView-->
-            <!--android:id="@+id/runningMapView"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="310dp"-->
-            <!--android:layout_marginBottom="8dp"-->
-            <!--android:layout_marginEnd="5dp"-->
-            <!--android:layout_marginStart="5dp"-->
-            <!--android:layout_marginTop="8dp"-->
-            <!--app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--app:layout_constraintEnd_toEndOf="parent"-->
-            <!--app:layout_constraintHorizontal_bias="0.0"-->
-            <!--app:layout_constraintStart_toStartOf="parent"-->
-            <!--app:layout_constraintTop_toBottomOf="@+id/mapToolbar"-->
-            <!--app:layout_constraintTop_toTopOf="parent"-->
-            <!--app:layout_constraintVertical_bias="0.183" />-->
-
+        app:layout_constraintVertical_bias="0.183"
+        tools:context="com.example.borek.myapplication.RunningMapsActivity" />
 
 </android.support.constraint.ConstraintLayout>
+

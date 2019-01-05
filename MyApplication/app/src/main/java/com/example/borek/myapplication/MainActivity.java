@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(weatherIntent);
         }
         if (activity.getId() == R.id.mapButton) {
-            Intent mapIntent = new Intent(this, MapActivity.class);
+            Intent mapIntent = new Intent(this, RunningMapsActivity.class);
             startActivity(mapIntent);
         }
         if (activity.getId() == R.id.historyButton) {
