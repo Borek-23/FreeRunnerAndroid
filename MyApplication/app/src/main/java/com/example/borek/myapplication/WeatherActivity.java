@@ -26,7 +26,7 @@ public class WeatherActivity extends AppCompatActivity {
 
     Button navButtonWeather;
     TextView runCondition;
-    TextView runningConditionChangeable;
+    TextView runningCondition;
     ImageView weatherIcon;
 
     @Override
@@ -37,7 +37,7 @@ public class WeatherActivity extends AppCompatActivity {
         // Initiate elements
         navButtonWeather = (Button) findViewById(R.id.navButtonWeather);
         runCondition = (TextView) findViewById(R.id.runCondition);
-        runningConditionChangeable = (TextView) findViewById(R.id.runningConditionChangeable);
+        runningCondition = (TextView) findViewById(R.id.runningConditionChangeable);
         weatherIcon = (ImageView) findViewById(R.id.weatherIcon);
         weatherIcon = (ImageView) findViewById(R.id.weatherIcon);
     }
