@@ -76,17 +76,16 @@ public class RunningMapsActivity extends FragmentActivity implements OnMapReadyC
 
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
 
-        /** Optionally I can add marker to my current location, But aesthetically I chose not to do that but left it in the code to remember how it's done :-) **/
-//        MarkerOptions markerOptions = new MarkerOptions();
-//        markerOptions.position(latLng);
-//        markerOptions.title("Your Are Here");
-//        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET));
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(latLng);
+        markerOptions.title("Your Are Here");
+        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
 
-//        currentUserLocationMarker = mMap.addMarker(markerOptions);
+        currentUserLocationMarker = mMap.addMarker(markerOptions);
 
         // Move a camera to the marker location
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        mMap.animateCamera(CameraUpdateFactory.zoomBy(14));
+        mMap.animateCamera(CameraUpdateFactory.zoomBy(13));
 
         // Store location updates
         if (googleApiClient != null) {
