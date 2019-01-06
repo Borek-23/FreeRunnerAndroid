@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void activityChanger(View activity) {
         if (activity.getId() == R.id.weatherButton) {
-            Intent weatherIntent = new Intent(this, WeatherActivity.class);
+            Intent weatherIntent = new Intent(this, WeatherActivity1.class);
             startActivity(weatherIntent);
         }
         if (activity.getId() == R.id.mapButton) {
