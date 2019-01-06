@@ -20,10 +20,7 @@ import java.util.Date;
 public class ResultsActivity extends AppCompatActivity {
 
     // Button object
-    Button navButtonResult;
-    Button shareButton;
-
-    // TextView object
+    Button navButtonResult, shareButton;
     TextView resultsActivityTop;
 
     @Override
