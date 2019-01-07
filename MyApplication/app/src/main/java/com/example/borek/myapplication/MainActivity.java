@@ -1,5 +1,6 @@
 package com.example.borek.myapplication;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -7,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,6 +20,9 @@ public class MainActivity extends AppCompatActivity {
     Button tipsButton;
     Button historyButton;
     Button goButton;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         tipsButton = (Button) findViewById(R.id.tipsButton);
         historyButton = (Button) findViewById(R.id.historyButton);
         goButton = (Button) findViewById(R.id.goButton);
+
     }
 
     public void activityChanger(View activity) {
