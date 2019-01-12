@@ -15,16 +15,12 @@ import com.example.borek.myapplication.Function.Function;
 public class RunningActivity extends AppCompatActivity {
 
     TextView timer;
-    Button navButtonRunning;
-    Button completeRunButton;
-    Button startStopWatch;
+    Button navButtonRunning, completeRunButton, startStopWatch;
 
     public com.example.borek.myapplication.Function.Chronometer stopWatch;
     private Thread threadStopWatch;
 
     private Context mContext;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +62,6 @@ public class RunningActivity extends AppCompatActivity {
             }
         });
     }
-    
 
     public void updateStopWatch(final String time) {
         runOnUiThread(new Runnable() {
@@ -76,4 +71,5 @@ public class RunningActivity extends AppCompatActivity {
             }
         });
     }
+
 }

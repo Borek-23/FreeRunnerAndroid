@@ -21,8 +21,7 @@ public class ResultsActivity extends AppCompatActivity {
 
     // Button object
     Button navButtonResult, shareButton;
-    TextView resultsActivityTop;
-    TextView timeOfRun;
+    TextView resultsActivityTop, timeOfRun, caloriesBurnt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +31,7 @@ public class ResultsActivity extends AppCompatActivity {
         navButtonResult = (Button) findViewById(R.id.navButtonResult);
         shareButton = (Button) findViewById(R.id.shareButton);
         timeOfRun = (TextView) findViewById(R.id.timeOfRun);
+        caloriesBurnt = (TextView) findViewById(R.id.caloriesBurnt);
 
         // Locating TextViews on the layout
         resultsActivityTop = (TextView) findViewById(R.id.resultsActivityTop);
@@ -49,14 +49,19 @@ public class ResultsActivity extends AppCompatActivity {
         String runTimeResult = extras.getString("stopWatchResult");
         timeOfRun.setText(runTimeResult);
 
+//        int calorieResult = calculateBurntCalories();
+//        caloriesBurnt.setText(calorieResult);
     }
 
-//    public void updateStopWatch(final String time) {
-//        runOnUiThread(new Runnable() {
-//            @Override
-//            public void run() {
-//                greeting.setText(time);
-//            }
-//        });
+    // This is experimental calculation of calories burnt while running at 5.2mph, based on 80kg individual
+    // Just to see if the data be updated in real time and handled in other parts of app
+    // In final product this would be recalculated based on individual's personal profile
+//    public int calculateBurntCalories() {
+//        int caloriePerMinute = (int) ((9 * 80 * 3.5) / 200); // per minute
+//        String textData = timeOfRun.getText().toString();
+//        int textToDouble = Integer.parseInt(textData);
+//        return textToDouble; // (caloriePerMinute * textToDouble)
 //    }
+
+
 }
