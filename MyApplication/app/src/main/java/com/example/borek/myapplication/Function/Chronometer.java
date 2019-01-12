@@ -2,6 +2,7 @@ package com.example.borek.myapplication.Function;
 
 import android.content.Context;
 
+import com.example.borek.myapplication.ResultsActivity;
 import com.example.borek.myapplication.RunningActivity;
 
 /**

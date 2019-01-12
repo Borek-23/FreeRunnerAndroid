@@ -22,6 +22,7 @@ public class ResultsActivity extends AppCompatActivity {
     // Button object
     Button navButtonResult, shareButton;
     TextView resultsActivityTop;
+    TextView timeOfRun;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,7 @@ public class ResultsActivity extends AppCompatActivity {
 
         navButtonResult = (Button) findViewById(R.id.navButtonResult);
         shareButton = (Button) findViewById(R.id.shareButton);
+        timeOfRun = (TextView) findViewById(R.id.timeOfRun);
 
         // Locating TextViews on the layout
         resultsActivityTop = (TextView) findViewById(R.id.resultsActivityTop);
@@ -42,5 +44,19 @@ public class ResultsActivity extends AppCompatActivity {
         Date date = new Date();
         DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(getApplicationContext());
         resultsActivityTop.setText("Result for " + dateFormat.format(date));
+
+        Bundle extras = getIntent().getExtras();
+        String runTimeResult = extras.getString("stopWatchResult");
+        timeOfRun.setText(runTimeResult);
+
     }
+
+//    public void updateStopWatch(final String time) {
+//        runOnUiThread(new Runnable() {
+//            @Override
+//            public void run() {
+//                greeting.setText(time);
+//            }
+//        });
+//    }
 }

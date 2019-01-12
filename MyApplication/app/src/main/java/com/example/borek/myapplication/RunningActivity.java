@@ -2,12 +2,15 @@ package com.example.borek.myapplication;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.TextView;
+
+import com.example.borek.myapplication.Function.Function;
 
 public class RunningActivity extends AppCompatActivity {
 
@@ -57,15 +60,13 @@ public class RunningActivity extends AppCompatActivity {
                     stopWatch = null;
                 }
                 Intent resultsIntent = new Intent(mContext, ResultsActivity.class);
+                String result = timer.getText().toString();
+                resultsIntent.putExtra("stopWatchResult", result);
                 startActivity(resultsIntent);
             }
         });
     }
-
-//    public void resultsActivity(View results) {
-//        Intent resultsIntent = new Intent(this, ResultsActivity.class);
-//        startActivity(resultsIntent);
-//    }
+    
 
     public void updateStopWatch(final String time) {
         runOnUiThread(new Runnable() {
