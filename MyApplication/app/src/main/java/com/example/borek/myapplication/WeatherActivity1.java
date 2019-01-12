@@ -1,25 +1,19 @@
 package com.example.borek.myapplication;
 
+import android.app.ActionBar;
 import android.graphics.Typeface;
-import android.location.LocationProvider;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.graphics.Typeface;
 import android.os.AsyncTask;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.borek.myapplication.Function.Function;
@@ -45,11 +39,10 @@ import android.support.v4.content.ContextCompat;
 public class WeatherActivity1 extends AppCompatActivity {
 
     Button navButtonWeather;
-    TextView runCondition, runningCondition, weatherIcon, updatedField, humidity, windSpeed, currentTemperature, selectCity, currentCity, detailsField, visibility;
-    static TextView locationText;
+    TextView runCondition, runningCondition, weatherIcon, selectCity, updatedField, humidity, windSpeed, currentTemperature, currentCity, detailsField, visibility;
     ProgressBar loader;
     Typeface weatherFont;
-    String city = "Birmingham, UK";
+    String city = "Birmingham, GB";
     String openWeatherApi = "4cf171611b393ec1f32e753bb67b2a87";
 
     @Override
@@ -75,17 +68,7 @@ public class WeatherActivity1 extends AppCompatActivity {
         weatherFont = Typeface.createFromAsset(getAssets(), "fonts/weathericons-regular-webfont.ttf");
         weatherIcon.setTypeface(weatherFont);
 
-        locationText = (TextView) findViewById(R.id.locationText);
-
         taskLoadUp(city);
-
-        // Request location permission from user
-        if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 101);
-        }
-
-//        new LocationProvider().locationStringFromLocation(new LocationProvider().getLocation());
-
 
         selectCity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,7 +82,6 @@ public class WeatherActivity1 extends AppCompatActivity {
                         ConstraintLayout.LayoutParams.MATCH_PARENT);
                 input.setLayoutParams(lp);
                 alertDialog.setView(input);
-
                 alertDialog.setPositiveButton("Change",
                         new DialogInterface.OnClickListener() {
                             @Override
@@ -116,15 +98,9 @@ public class WeatherActivity1 extends AppCompatActivity {
                             }
                         });
                 alertDialog.show();
-
-                locationText.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        new LocationProvider().getLocation();
-                    }
-                });
             }
         });
+        selectCity.setText("Click to Change City");
     }
 
     public void taskLoadUp(String query) {
@@ -191,54 +167,6 @@ public class WeatherActivity1 extends AppCompatActivity {
             } catch (JSONException e) {
                 Toast.makeText(getApplicationContext(), "Error, Check City Please", Toast.LENGTH_SHORT).show();
             }
-        }
-    }
-
-    public class LocationProvider extends AppCompatActivity implements LocationListener {
-        public LocationManager locationManager;
-
-        public void getLocation() {
-            try {
-                locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 5, this);
-            }
-            catch(SecurityException e) {
-                e.printStackTrace();
-            }
-        }
-
-        @Override
-        public void onLocationChanged(Location location) {
-            WeatherActivity1.locationText.setText("Latitude: " + location.getLatitude() + "\n Longitude: " + location.getLongitude());
-
-            try {
-                Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-                List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-                WeatherActivity1.locationText.setText(WeatherActivity1.locationText.getText() + "\n"+addresses.get(0).getAddressLine(0)+", "+
-                        addresses.get(0).getAddressLine(1)+", "+addresses.get(0).getAddressLine(2));
-            }catch(Exception e)
-            {
-
-            }
-        }
-
-        public String locationStringFromLocation(final Location location) {
-            return Location.convert(location.getLatitude(), Location.FORMAT_DEGREES) + " " + Location.convert(location.getLongitude(), Location.FORMAT_DEGREES);
-        }
-
-        @Override
-        public void onStatusChanged(String s, int i, Bundle bundle) {
-
-        }
-
-        @Override
-        public void onProviderEnabled(String s) {
-
-        }
-
-        @Override
-        public void onProviderDisabled(String s) {
-            Toast.makeText(WeatherActivity1.this, "Please Enable GPS and Internet", Toast.LENGTH_SHORT).show();
         }
     }
 }
