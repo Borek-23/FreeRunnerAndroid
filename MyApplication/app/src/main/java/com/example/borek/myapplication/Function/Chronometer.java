@@ -1,5 +1,6 @@
 package com.example.borek.myapplication.Function;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 
 import com.example.borek.myapplication.ResultsActivity;
@@ -22,6 +23,7 @@ public class Chronometer implements Runnable {
         mContext = context;
     }
 
+    @SuppressLint("DefaultLocale")
     @Override
     public void run() {
         while (chronometerIsRunning) {
