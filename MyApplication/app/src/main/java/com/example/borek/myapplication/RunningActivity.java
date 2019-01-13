@@ -15,9 +15,11 @@ public class RunningActivity extends AppCompatActivity {
 
     public com.example.borek.myapplication.Function.Chronometer stopWatch;
     public com.example.borek.myapplication.Function.DistanceCalculator distanceMeasure;
-    private Thread threadStopWatch, threadDistance;
+    public com.example.borek.myapplication.Function.StepsCalculator stepsMeasure;
+    public com.example.borek.myapplication.Function.CaloriesCalculator caloriesMeasure;
+    private Thread threadStopWatch, threadDistance, threadSteps, threadCalories;
 
-    private Context mContext, mContext1;
+    private Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +27,6 @@ public class RunningActivity extends AppCompatActivity {
         setContentView(R.layout.activity_running);
 
         mContext = this;
-        mContext1 = this;
 
         navButtonRunning = (Button) findViewById(R.id.navButtonRunning);
         completeRunButton = (Button) findViewById(R.id.completeRunButton);
@@ -45,10 +46,22 @@ public class RunningActivity extends AppCompatActivity {
                     stopWatch.startChronometer();
                 }
                 if (distanceMeasure == null) {
-                    distanceMeasure = new com.example.borek.myapplication.Function.DistanceCalculator(mContext1);
+                    distanceMeasure = new com.example.borek.myapplication.Function.DistanceCalculator(mContext);
                     threadDistance = new Thread(distanceMeasure);
                     threadDistance.start();
                     distanceMeasure.startDistance();
+                }
+                if (stepsMeasure == null) {
+                    stepsMeasure = new com.example.borek.myapplication.Function.StepsCalculator(mContext);
+                    threadSteps = new Thread(stepsMeasure);
+                    threadSteps.start();
+                    stepsMeasure.startSteps();
+                }
+                if (caloriesMeasure == null) {
+                    caloriesMeasure = new com.example.borek.myapplication.Function.CaloriesCalculator(mContext);
+                    threadCalories = new Thread(caloriesMeasure);
+                    threadCalories.start();
+                    caloriesMeasure.startCalories();
                 }
             }
         });
@@ -68,14 +81,31 @@ public class RunningActivity extends AppCompatActivity {
                     threadDistance = null;
                     distanceMeasure = null;
                 }
+                if (stepsMeasure != null) {
+                    stepsMeasure.stopSteps();
+                    threadSteps.interrupt();
+                    threadSteps = null;
+                    stepsMeasure = null;
+                }
+                if (caloriesMeasure != null) {
+                    caloriesMeasure.stopCalories();
+                    threadCalories.interrupt();
+                    threadCalories = null;
+                    caloriesMeasure = null;
+                }
                 Intent resultsIntent = new Intent(mContext, ResultsActivity.class);
                 String result = timer.getText().toString();
+                String distanceResult = distanceWhileRunning.getText().toString();
+                String calorieResult = caloriesWhileRunning.getText().toString();
                 resultsIntent.putExtra("stopWatchResult", result);
+                resultsIntent.putExtra("distanceResult", distanceResult);
+                resultsIntent.putExtra("calorieResult", calorieResult);
                 startActivity(resultsIntent);
             }
         });
     }
 
+    // Use UI thread to update the textView in real time
     public void updateStopWatch(final String time) {
         runOnUiThread(new Runnable() {
             @Override
@@ -85,11 +115,32 @@ public class RunningActivity extends AppCompatActivity {
         });
     }
 
+    // Use UI thread to update the textView in real time
     public void updateDistance(final String distance) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 distanceWhileRunning.setText(distance + " m");
+            }
+        });
+    }
+
+    // Use UI thread to update the textView in real time
+    public void updateSteps(final String steps) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                stepsWhileRunning.setText(steps);
+            }
+        });
+    }
+
+    // Use UI thread to update the textView in real time
+    public void updateCalories(final String calories) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                caloriesWhileRunning.setText(calories + " cal");
             }
         });
     }
