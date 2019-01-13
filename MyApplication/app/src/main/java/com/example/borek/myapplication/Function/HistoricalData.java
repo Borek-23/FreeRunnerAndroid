@@ -13,6 +13,7 @@ public class HistoricalData {
         this.duration = duration;
         this.distance = distance;
         this.dateTime = dateTime;
+
     }
 
     public String getDateTime() {
