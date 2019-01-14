@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.borek.myapplication.HistoryActivity">
 
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/historyToolbar"
         android:layout_width="match_parent"

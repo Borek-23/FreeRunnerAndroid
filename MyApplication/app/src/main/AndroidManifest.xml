@@ -61,7 +61,23 @@
         <activity
             android:name=".RunningMapsActivity"
             android:label="@string/title_activity_running_maps" />
-        <activity android:name=".WeatherActivity1"></activity>
+        <activity android:name=".WeatherActivity1" />
+        <activity
+            android:name=".NavigationActivity"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".WeatherNavigation"
+            android:label="@string/title_activity_weather_navigation"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".MapNavigation"
+            android:label="@string/title_activity_map_navigation"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".HistoryNavigation"
+            android:label="@string/title_activity_history_navigation"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
