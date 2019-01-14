@@ -32,6 +32,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class RunningMapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
+    // Declaring variables needed
     private GoogleMap mMap;
     private GoogleApiClient googleApiClient;
     private LocationRequest locationRequest;
@@ -61,21 +62,26 @@ public class RunningMapsActivity extends FragmentActivity implements OnMapReadyC
         }
     }
 
+    // This creates new intent to bring the user to the RunningActivity
     public void trackedRunningActivity(View running) {
         Intent runningIntent = new Intent(this, RunningActivity.class);
         startActivity(runningIntent);
     }
 
+    // This method handles the changes of location, hence tracking the phone
     @Override
     public void onLocationChanged(Location location) {
         lastLocation = location;
 
+        // Remove the marker if already exists
         if (currentUserLocationMarker != null) {
             currentUserLocationMarker.remove();
         }
 
+        // Creating new latitude, longtitude object
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
 
+        // This is to setup and display the marker alongside with the message
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(latLng);
         markerOptions.title("Your Are Here");
@@ -93,6 +99,7 @@ public class RunningMapsActivity extends FragmentActivity implements OnMapReadyC
         }
     }
 
+    // This method checks for user permission to share location of the device
     @Override
     public void onConnected(@Nullable Bundle bundle) {
         locationRequest = new LocationRequest();
@@ -100,6 +107,7 @@ public class RunningMapsActivity extends FragmentActivity implements OnMapReadyC
         locationRequest.setFastestInterval(1100);
         locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
 
+        // Here is the check
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient, locationRequest, this);
         }
@@ -115,6 +123,7 @@ public class RunningMapsActivity extends FragmentActivity implements OnMapReadyC
 
     }
 
+    // This method enables the location if the permission was granted
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -125,6 +134,7 @@ public class RunningMapsActivity extends FragmentActivity implements OnMapReadyC
         }
     }
 
+    // This method check if the user agrees with the location to be obtained
     public boolean checkUserLocationPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
@@ -157,6 +167,7 @@ public class RunningMapsActivity extends FragmentActivity implements OnMapReadyC
         }
     }
 
+    // This method uses API I obtained to build the client linked to my account
     protected synchronized void buildGoogleApiClient() {
         googleApiClient = new GoogleApiClient.Builder(this).addConnectionCallbacks(this).addOnConnectionFailedListener(this).addApi(LocationServices.API).build();
         googleApiClient.connect();

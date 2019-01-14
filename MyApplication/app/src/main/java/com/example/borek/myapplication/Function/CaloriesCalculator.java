@@ -11,17 +11,21 @@ import com.example.borek.myapplication.RunningActivity;
 
 public class CaloriesCalculator implements Runnable {
 
+    // Declaring necessary variables
     private long startTime;
     private boolean caloriesIsRunning;
     private Context mContext;
 
+    // Setting a constructor to initiate context of this class
     public CaloriesCalculator(Context context) {
         mContext = context;
     }
 
+    // Must override run method since I am implementing an interface here (Runnable)
     @SuppressLint("DefaultLocale")
     @Override
     public void run() {
+        // Creating a while loop which provides calculations while the thread is running
         while (caloriesIsRunning) {
             long since = System.currentTimeMillis() - startTime;
 
@@ -31,6 +35,7 @@ public class CaloriesCalculator implements Runnable {
             int seconds = (int) ((since / 1000) % 60);
             double calories = seconds * 0.21;
 
+            // Accessing the Running activity's method updateCalories() and formatting string as desired
             ((RunningActivity)mContext).updateCalories(String.format("%.2f", calories));
             try {
                 // Put thread to sleep for 10 milliseconds before starting to run
@@ -41,11 +46,15 @@ public class CaloriesCalculator implements Runnable {
         }
     }
 
+    // These methods are called from the RunningActivity
+
+    // This method starts the while while loop
     public void startCalories() {
         startTime = System.currentTimeMillis();
         caloriesIsRunning = true;
     }
 
+    // This method stops the while loop
     public void stopCalories() {
         caloriesIsRunning = false;
     }

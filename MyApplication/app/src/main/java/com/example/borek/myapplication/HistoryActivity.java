@@ -28,10 +28,12 @@ public class HistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
+        // Initiate the layout elements
         navButtonHistory = (Button) findViewById(R.id.navButtonHistory);
         shareButton = (Button) findViewById(R.id.shareButton);
         resultsListView = (ListView) findViewById(R.id.resultsListView);
 
+        // Using shared preferences to obtain the data from RunningActivity's intent
         SharedPreferences sharedPref = getSharedPreferences("runResult", Context.MODE_PRIVATE);
 
         String timeResult = sharedPref.getString("timeResult", "");
@@ -42,7 +44,7 @@ public class HistoryActivity extends AppCompatActivity {
         // Getting the format of the date based on the application context (locale)
         DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(getApplicationContext());
 
-        // Create objects for data
+        // Create objects for data -> using the data from shared preferences
         HistoricalData run1 = new HistoricalData(calorieResult, timeResult, distanceResult, dateFormat.format(date));
         HistoricalData run2 = new HistoricalData(calorieResult, timeResult, distanceResult, dateFormat.format(date));
         HistoricalData run3 = new HistoricalData(calorieResult, timeResult, distanceResult, dateFormat.format(date));
@@ -53,7 +55,6 @@ public class HistoryActivity extends AppCompatActivity {
         HistoricalData run8 = new HistoricalData(calorieResult, timeResult, distanceResult, dateFormat.format(date));
         HistoricalData run9 = new HistoricalData(calorieResult, timeResult, distanceResult, dateFormat.format(date));
         HistoricalData run10 = new HistoricalData(calorieResult, timeResult, distanceResult, dateFormat.format(date));
-
 
         // Create an arrayList to hold the data -> then populate it
         ArrayList<HistoricalData> historyData = new ArrayList<>();
@@ -68,6 +69,7 @@ public class HistoryActivity extends AppCompatActivity {
         historyData.add(run9);
         historyData.add(run10);
 
+        // Create an adapter object and populate it with the custom layout
         HistoricalDataListAdapter adapter = new HistoricalDataListAdapter(this, R.layout.adapter_view_layout, historyData);
         resultsListView.setAdapter(adapter);
     }

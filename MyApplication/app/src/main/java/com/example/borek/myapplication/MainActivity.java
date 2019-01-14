@@ -21,15 +21,12 @@ public class MainActivity extends AppCompatActivity {
     Button historyButton;
     Button goButton;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Locating buttons on the layout
+        // Initialising buttons on the layout
         navButtonMain = (Button) findViewById(R.id.navButtonMain);
         weatherButton = (Button) findViewById(R.id.weatherButton);
         mapButton = (Button) findViewById(R.id.mapButton);
@@ -39,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // This method finds the button by ID then launches appropriate intent when pressed
     public void activityChanger(View activity) {
         if (activity.getId() == R.id.weatherButton) {
             Intent weatherIntent = new Intent(this, WeatherActivity1.class);
@@ -58,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // This method handles the tips button -> it will create a notification pop-up to ask for YouTube
+    // Then it will launch YouTube with searched filled in for "running tips"
     public void youtubeTips(View tips) {
         Intent youtubeTips = new Intent(Intent.ACTION_VIEW);
         Intent chooser = Intent.createChooser(youtubeTips, "Please launch YouTube for this feature");

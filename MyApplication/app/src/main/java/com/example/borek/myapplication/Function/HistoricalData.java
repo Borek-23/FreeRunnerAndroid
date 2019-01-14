@@ -4,10 +4,11 @@ package com.example.borek.myapplication.Function;
  * Created by borek on 13/01/19.
  */
 
+// This is a helper class to set the type of data that will belong to the custom made adapter
 public class HistoricalData {
     private String dateTime, duration, distance, caloriesBurnt;
 
-
+    // Initiating above declared variables
     public HistoricalData(String caloriesBurnt, String duration, String distance, String dateTime) {
         this.caloriesBurnt = caloriesBurnt;
         this.duration = duration;
@@ -15,6 +16,9 @@ public class HistoricalData {
         this.dateTime = dateTime;
 
     }
+
+    // Using getters and setters to manipulate variables as they are private
+    // For my purpose, only getters are being used
 
     public String getDateTime() {
         return dateTime;

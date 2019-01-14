@@ -11,17 +11,21 @@ import com.example.borek.myapplication.RunningActivity;
 
 public class StepsCalculator implements Runnable {
 
+    // Declaring necessary variables
     private long startTime;
     private boolean stepsIsRunning;
     private Context mContext;
 
+    // Setting a constructor to initiate context of this class
     public StepsCalculator(Context context) {
         mContext = context;
     }
 
+    // Must override run method since I am implementing an interface here (Runnable)
     @SuppressLint("DefaultLocale")
     @Override
     public void run() {
+        // Creating a while loop which provides calculations while the thread is running
         while (stepsIsRunning) {
             long since = System.currentTimeMillis() - startTime;
 
@@ -31,8 +35,10 @@ public class StepsCalculator implements Runnable {
             int seconds = (int) ((since / 1000) % 60);
             int stepsPerSecond = seconds * 3;
 
+            // Accessing the Running activity's method updateSteps() and and feed it calculated value
             ((RunningActivity)mContext).updateSteps(String.valueOf(stepsPerSecond));
             try {
+                // Put thread to sleep for 10 milliseconds before starting to run
                 Thread.sleep(10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -40,11 +46,15 @@ public class StepsCalculator implements Runnable {
         }
     }
 
+    // These methods are called from the RunningActivity
+
+    // This method starts the while while loop
     public void startSteps() {
         startTime = System.currentTimeMillis();
         stepsIsRunning = true;
     }
 
+    // This method stops the while loop
     public void stopSteps() {
         stepsIsRunning = false;
     }

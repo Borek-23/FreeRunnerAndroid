@@ -14,6 +14,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
 
+// This class is to set up the navigation drawer -> it is all finished
+// However, the behaviour is not functional yet, so it is for now left out from the prototype
+
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 

@@ -14,6 +14,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+// This class is to set up the navigation drawer -> it is all finished
+// However, the behaviour is not functional yet, so it is for now left out from the prototype
+
 public class MapNavigation extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 

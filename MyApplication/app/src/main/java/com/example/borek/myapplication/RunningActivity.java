@@ -47,6 +47,7 @@ public class RunningActivity extends AppCompatActivity {
         caloriesWhileRunning = (TextView) findViewById(R.id.caloriesWhileRunning);
 
         // Creating an onClickListener to set the function of what happens when appropriate button is clicked
+        // Also when clicked, this listener will create separate threads to handle each calculation at the same time
         startStopWatch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,6 +78,8 @@ public class RunningActivity extends AppCompatActivity {
             }
         });
 
+        // When this button is clicked, all the threads are check if running -> then rey are stopped
+        // The content of all values on this activity is then reset
         completeRunButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -104,16 +107,19 @@ public class RunningActivity extends AppCompatActivity {
                     threadCalories = null;
                     caloriesMeasure = null;
                 }
+                // Creating new intent to be transported to ResultsActivity where results are displayed
                 Intent resultsIntent = new Intent(mContext, ResultsActivity.class);
 
                 String result = timer.getText().toString();
                 String distanceResult = distanceWhileRunning.getText().toString();
                 String calorieResult = caloriesWhileRunning.getText().toString();
 
+                // These are shared preferences obtaining data to be handled in ResultsActivity
                 resultsIntent.putExtra("stopWatchResult", result);
                 resultsIntent.putExtra("distanceResult", distanceResult);
                 resultsIntent.putExtra("calorieResult", calorieResult);
 
+                // These are methods calls
                 startActivity(resultsIntent);
 
                 saveHistory(view);
@@ -131,7 +137,8 @@ public class RunningActivity extends AppCompatActivity {
         editor.putString("calorieResult", caloriesWhileRunning.getText().toString());
         editor.apply();
 
-        Toast.makeText(this, "Saved to History", Toast.LENGTH_LONG).show();
+        // Create a message stating the data have been saved
+        Toast.makeText(this, "Saved to History", Toast.LENGTH_SHORT).show();
     }
 
     // The methods bellow update values of TextViews in real time -> all depending on System.currentTimeMillis()

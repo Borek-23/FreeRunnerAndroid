@@ -38,11 +38,14 @@ import android.support.v4.content.ContextCompat;
 
 public class WeatherActivity1 extends AppCompatActivity {
 
+    // Declare the necessary variables
     Button navButtonWeather;
     TextView runCondition, runningCondition, weatherIcon, selectCity, updatedField, humidity, windSpeed, currentTemperature, currentCity, detailsField, visibility;
     ProgressBar loader;
     Typeface weatherFont;
+    // Starting city
     String city = "Birmingham, GB";
+    // My API key
     String openWeatherApi = "4cf171611b393ec1f32e753bb67b2a87";
 
     @Override
@@ -65,11 +68,13 @@ public class WeatherActivity1 extends AppCompatActivity {
         detailsField = (TextView) findViewById(R.id.detailsField);
         visibility = (TextView) findViewById(R.id.visibility);
 
+        // Set custom font
         weatherFont = Typeface.createFromAsset(getAssets(), "fonts/weathericons-regular-webfont.ttf");
         weatherIcon.setTypeface(weatherFont);
 
         taskLoadUp(city);
 
+        // Set onClickListener to handle the textView which allows user to change the city using a dialog builder
         selectCity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,6 +108,7 @@ public class WeatherActivity1 extends AppCompatActivity {
         selectCity.setText("Click to Change City");
     }
 
+    // This is using the helper class, seeing if the network connection is available
     public void taskLoadUp(String query) {
         if (Function.isNetworkAvailable(getApplicationContext())) {
             DownloadWeather task = new DownloadWeather();
@@ -120,6 +126,7 @@ public class WeatherActivity1 extends AppCompatActivity {
             loader.setVisibility(View.VISIBLE);
         }
 
+        // This method seperates the URI to implement my API
         @Override
         protected String doInBackground(String... strings) {
             String xml = Function.executeGet("http://api.openweathermap.org/data/2.5/weather?q=" + strings[0]
@@ -127,6 +134,8 @@ public class WeatherActivity1 extends AppCompatActivity {
             return xml;
         }
 
+        // This method handles the JSON object received from the API and processes it to human readable data
+        // It also handles the logic behind the condition for running and visibility
         @Override
         protected void onPostExecute(String xml) {
             try {

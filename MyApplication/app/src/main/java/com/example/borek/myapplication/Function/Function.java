@@ -13,13 +13,15 @@ import java.util.Date;
 /**
  * Created by borek on 05/01/19.
  */
-
+// This is a helper class to aid with handling URL and icon type to appear correctly
 public class Function {
 
+    // This method checks if the network connection is available using ConnectivityManager class
     public static boolean isNetworkAvailable(Context context) {
         return ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo() != null;
     }
 
+    // This method creates connection, buffered reader and input stream to handle API URL
     public static String executeGet(String targetURL) {
         URL url;
         HttpURLConnection connection = null;
@@ -33,6 +35,7 @@ public class Function {
             connection.setDoInput(true);
             connection.setDoOutput(false);
 
+            // Create an input stream to obtain data
             InputStream inputStream;
             int status = connection.getResponseCode();
             if (status != HttpURLConnection.HTTP_OK) {
@@ -40,6 +43,7 @@ public class Function {
             } else {
                 inputStream = connection.getInputStream();
             }
+            // Create a buffered reader object to read the data from input stream
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
             String line;
             StringBuffer response = new StringBuffer();
@@ -47,6 +51,7 @@ public class Function {
                 response.append(line);
                 response.append('\r');
             }
+            // When all reading is done, close the buffered reader to flush the data, then disconnect the connection
             bufferedReader.close();
             return response.toString();
         } catch (Exception e) {
@@ -58,6 +63,7 @@ public class Function {
         }
     }
 
+    // This method handles the icons and and calculates sunrise and sunset
     public static String setWeatherIcons(int actualId, long sunrise, long sunset) {
         int id = actualId / 100;
         String icon = "";
